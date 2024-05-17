@@ -1,51 +1,66 @@
-import Card from '@mui/material/Card';
-import CardContent from '@mui/material/CardContent';
-import CardMedia from '@mui/material/CardMedia';
-import Typography from '@mui/material/Typography';
-import IconButton from '@mui/material/IconButton';
-import React, { useState } from 'react';
-import ShoppingCartCheckoutIcon from '@mui/icons-material/ShoppingCartCheckout';
-import { useDispatch } from 'react-redux';
+import Card from "@mui/material/Card";
+import CardContent from "@mui/material/CardContent";
+import CardMedia from "@mui/material/CardMedia";
 
+import React, { useState } from "react";
+import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
+import { useDispatch } from "react-redux";
+import Button from "@mui/joy/Button";
+import Typography from "@mui/joy/Typography";
 
-export default function Cards({image, title, description}){
-    const [hover, setHover] = useState(false);
-    const [cart, setCart]= useState(false)
-    const dispatch = useDispatch();
-   
-function handleClick(cart){
-dispatch({ type: 'ADD_CART' });
-console.log(cart)
-}
+export default function Cards({ image, title, description, price }) {
+  const [hover, setHover] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const dispatch = useDispatch();
 
-    return (
-        <Card sx={{ maxWidth: 400, marginBottom:5, 
-        boxShadow: hover ? '0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12)' : '0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)',
-        transition: '0.3s ease-in'
-        
-        }}
-       onMouseOver={() => setHover(true)}
-            onMouseOut={() => setHover(false)}
-       
-        >
-  <CardMedia
-          component="img"
-          width="140"
-          height="140"
-          image={image} // Assuming 'image' is the property name for the image URL
-           // Assuming 'title' is the property name for the product title
-        />
-        <CardContent>
-        <Typography gutterBottom variant="h5" component="div">
+  function handleClick() {
+    dispatch({ type: "ADD_CART" }, [dispatch]);
+    dispatch({ type: "CART_ITEMS", payload: { image, title, price } }, [
+      dispatch,
+    ]);
+    setLoading(true);
+    setTimeout(() => setLoading(false), 1000);
+  }
+
+  return (
+    <Card
+      sx={{
+        maxWidth: 400,
+        marginBottom: 5,
+        boxShadow: hover
+          ? "0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12)"
+          : "0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)",
+        transition: "0.3s ease-in",
+      }}
+      onMouseOver={() => setHover(true)}
+      onMouseOut={() => setHover(false)}
+    >
+      <CardMedia component="img" width="140" height="140" image={image} />
+      <CardContent>
+        <Typography gutterBottom level="title-lg">
           {title}
         </Typography>
-        <Typography variant="body2" color="text.secondary">
+        <Typography level="body-lg" variant="plain" color="text.secondary">
           {description}
         </Typography>
-        <IconButton onClick={handleClick}>
-          <ShoppingCartCheckoutIcon/>
-        </IconButton>
-</CardContent>
-  </Card>
-    )
+        <div className="d-flex justify-content-between p-3">
+          {loading ? (
+            <Button color="primary" loading variant="solid"></Button>
+          ) : (
+            <Button
+              color="primary"
+              variant="outlined"
+              onClick={handleClick}
+              startDecorator={<ShoppingCartCheckoutIcon />}
+            >
+              {" "}
+              Add to Cart
+            </Button>
+          )}
+
+          <Typography level="body-md">${price}</Typography>
+        </div>
+      </CardContent>
+    </Card>
+  );
 }
