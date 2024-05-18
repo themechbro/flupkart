@@ -9,6 +9,9 @@ import Fade from "@mui/material/Fade";
 import PropTypes from "prop-types";
 import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Checkout from "./components/checkout";
+import Error from "./components/error";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -51,17 +54,24 @@ ScrollTop.propTypes = {
 function App(props) {
   return (
     <Provider store={store}>
+    <Router>
       <div className="App"  >
         <Appbar />
         <div  >
-        <Product />
+        <Routes>
+          <Route path='/' element={<Product/>}/>
+          <Route path='/checkout' element={<Checkout/>}/>
+          <Route path='*' element={<Error/>}/>
+        </Routes>
         <ScrollTop {...props}>
           <Fab size="small" aria-label="scroll back to top">
             <KeyboardArrowUpIcon />
           </Fab>
         </ScrollTop>
+        <Checkout/>
         </div>
       </div>
+      </Router>
     </Provider>
   );
 }

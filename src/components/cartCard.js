@@ -7,6 +7,7 @@ import Typography from "@mui/joy/Typography";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "@mui/material";
 import Button from "@mui/joy/Button";
+import { Link } from "react-router-dom";
 
 export default function CartCard() {
   const cart = useSelector((state) => state.list.cartItems);
@@ -14,6 +15,7 @@ export default function CartCard() {
   const matches2 = useMediaQuery("(min-width:800px)");
 
   return (
+    
     <div className="container">
       <Typography level="h1">Your Cart </Typography>
       <div className="container d-flex flex-column justify-content-center align-items-center p-5">
@@ -48,10 +50,16 @@ export default function CartCard() {
           color="success"
           sx={{ width: 300, margin: "auto" }}
           level="body-lg"
+          component={Link}
+          to='/checkout'
         >
-          Proceed to Buy
+       Proceed to Buy
+          
         </Button>
       </div>
+
     </div>
+
+
   );
 }

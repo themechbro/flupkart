@@ -1,7 +1,6 @@
 import Card from "@mui/material/Card";
 import CardContent from "@mui/material/CardContent";
 import CardMedia from "@mui/material/CardMedia";
-
 import React, { useState } from "react";
 import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
 import { useDispatch } from "react-redux";
@@ -15,7 +14,7 @@ export default function Cards({ image, title, description, price }) {
 
   function handleClick() {
     dispatch({ type: "ADD_CART" }, [dispatch]);
-    dispatch({ type: "CART_ITEMS", payload: { image, title, price } }, [
+    dispatch({ type: "CART_ITEMS", payload: { image, title, price, description } }, [
       dispatch,
     ]);
     setLoading(true);
@@ -31,11 +30,15 @@ export default function Cards({ image, title, description, price }) {
           ? "0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12)"
           : "0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)",
         transition: "0.3s ease-in",
+        display:"flex",
+        flexDirection:'row',
+        justifyContent:'space-between',
+        flexWrap:'wrap'
       }}
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
     >
-      <CardMedia component="img" width="140" height="140" image={image} />
+      <CardMedia component="img" width="440" height="240" image={image} sx={{padding:1, boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",}} />
       <CardContent>
         <Typography gutterBottom level="title-lg">
           {title}
@@ -52,6 +55,7 @@ export default function Cards({ image, title, description, price }) {
               variant="outlined"
               onClick={handleClick}
               startDecorator={<ShoppingCartCheckoutIcon />}
+              sx={{boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"}}
             >
               {" "}
               Add to Cart
