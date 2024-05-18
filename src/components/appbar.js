@@ -81,7 +81,7 @@ function Appbar(props) {
             sx={{ display: "flex", justifyContent: "space-evenly" }}
             
           >
-            <Typography variant="h6"  sx={{ color: "#000" }} component={Link} to="/">
+            <Typography variant="h6" component={Link} sx={{ color: "#000" }} to='/'>
               Flupkart
             </Typography>
 
