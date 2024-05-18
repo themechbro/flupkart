@@ -23,7 +23,7 @@ import Drawer from "@mui/joy/Drawer";
 import ModalClose from "@mui/joy/ModalClose";
 import CartCard from "./cartCard";
 import Login from "./login";
-import { Link } from "react-router-dom";
+import { Link  } from "react-router-dom";
 
 
 
@@ -75,7 +75,8 @@ function Appbar(props) {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
-        <AppBar sx={{ backgroundColor: "#FFF", padding: 1 }}>
+      
+        <AppBar sx={{padding: 1 }} color="primary">
           <Toolbar
             className="container"
             sx={{ display: "flex", justifyContent: "space-evenly" }}
@@ -206,6 +207,7 @@ function Appbar(props) {
             )}
           </Toolbar>
         </AppBar>
+    
       </HideOnScroll>
 
       <Toolbar />

@@ -1,70 +1,77 @@
-import Card from "@mui/material/Card";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import React, { useState } from "react";
-import ShoppingCartCheckoutIcon from "@mui/icons-material/ShoppingCartCheckout";
-import { useDispatch } from "react-redux";
-import Button from "@mui/joy/Button";
-import Typography from "@mui/joy/Typography";
 
-export default function Cards({ image, title, description, price }) {
-  const [hover, setHover] = useState(false);
-  const [loading, setLoading] = useState(false);
+
+
+
+
+
+import * as React from 'react';
+import AspectRatio from '@mui/joy/AspectRatio';
+import Button from '@mui/joy/Button';
+import Card from '@mui/joy/Card';
+import CardContent from '@mui/joy/CardContent';
+import CardOverflow from '@mui/joy/CardOverflow';
+import Chip from '@mui/joy/Chip';
+import Link from '@mui/joy/Link';
+import Typography from '@mui/joy/Typography';
+import ArrowOutwardIcon from '@mui/icons-material/ArrowOutward';
+import { useDispatch } from 'react-redux';
+import { useState } from 'react';
+
+export default function Cards( {image, title, description, price}) {
   const dispatch = useDispatch();
+  const [loading, setLoading] = useState(false);
 
-  function handleClick() {
+
+  function handleClick(image, title, description, price) {
     dispatch({ type: "ADD_CART" }, [dispatch]);
     dispatch({ type: "CART_ITEMS", payload: { image, title, price, description } }, [
       dispatch,
     ]);
     setLoading(true);
     setTimeout(() => setLoading(false), 1000);
+    setOpen(true);
   }
 
   return (
-    <Card
-      sx={{
-        maxWidth: 400,
-        marginBottom: 5,
-        boxShadow: hover
-          ? "0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12)"
-          : "0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)",
-        transition: "0.3s ease-in",
-        display:"flex",
-        flexDirection:'row',
-        justifyContent:'space-between',
-        flexWrap:'wrap'
-      }}
-      onMouseOver={() => setHover(true)}
-      onMouseOut={() => setHover(false)}
-    >
-      <CardMedia component="img" width="440" height="240" image={image} sx={{padding:1, boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",}} />
+    <div>
+    <Card sx={{ width: 420, maxWidth: '100%', boxShadow: 'lg' }}>
+      <CardOverflow>
+        <AspectRatio sx={{ minWidth: 200 }}>
+          <img
+            src={image}
+            srcSet={image}
+            loading="lazy"
+            alt=""
+          />
+        </AspectRatio>
+      </CardOverflow>
       <CardContent>
-        <Typography gutterBottom level="title-lg">
-          {title}
-        </Typography>
-        <Typography level="body-lg" variant="plain" color="text.secondary">
-          {description}
-        </Typography>
-        <div className="d-flex justify-content-between p-3">
-          {loading ? (
-            <Button color="primary" loading variant="solid"></Button>
-          ) : (
-            <Button
-              color="primary"
-              variant="outlined"
-              onClick={handleClick}
-              startDecorator={<ShoppingCartCheckoutIcon />}
-              sx={{boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"}}
-            >
-              {" "}
-              Add to Cart
-            </Button>
-          )}
+        <Typography level="body-lg">{title}</Typography>
+        <Typography level='body-sm'>{description}</Typography>
 
-          <Typography level="body-md">${price}</Typography>
-        </div>
+        <Typography
+          level="title-lg"
+          sx={{ mt: 1, fontWeight: 'xl' }}
+          endDecorator={
+            <Chip component="span" size="sm" variant="soft" color="success">
+              Lowest price
+            </Chip>
+          }
+        >
+         $ {price}
+        </Typography>
+        
       </CardContent>
+      <CardOverflow>
+
+      {loading? (
+        <Button color="primary" loading variant="solid"></Button>
+      ): <Button variant="solid" color="danger" size="lg" onClick={handleClick}>
+          Add to cart
+        </Button>}
+        
+      </CardOverflow>
     </Card>
+    </div>
   );
 }

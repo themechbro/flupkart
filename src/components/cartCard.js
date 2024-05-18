@@ -7,12 +7,16 @@ import Typography from "@mui/joy/Typography";
 import { useSelector } from "react-redux";
 import { useMediaQuery } from "@mui/material";
 import Button from "@mui/joy/Button";
-import { Link } from "react-router-dom";
+import { Link, Router, Route, Routes } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
+
 
 export default function CartCard() {
   const cart = useSelector((state) => state.list.cartItems);
   const matches1 = useMediaQuery("(min-width:1100px)");
   const matches2 = useMediaQuery("(min-width:800px)");
+  const navigate = useNavigate();
 
   return (
     
@@ -25,6 +29,7 @@ export default function CartCard() {
               orientation="horizontal"
               variant="outlined"
               sx={{ width: 360, marginBottom: 3, marginRight: 3 }}
+              key={item.id} // Ensure unique key
             >
               <CardOverflow>
                 <AspectRatio ratio="1" sx={{ width: 90 }}>
@@ -50,8 +55,7 @@ export default function CartCard() {
           color="success"
           sx={{ width: 300, margin: "auto" }}
           level="body-lg"
-          component={Link}
-          to='/checkout'
+          onClick={() => navigate('/checkout')}
         >
        Proceed to Buy
           
