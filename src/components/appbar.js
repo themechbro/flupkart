@@ -23,7 +23,8 @@ import Drawer from "@mui/joy/Drawer";
 import ModalClose from "@mui/joy/ModalClose";
 import CartCard from "./cartCard";
 import Login from "./login";
-import { Link  } from "react-router-dom";
+import { Link } from "@mui/joy";
+import { Link as RouterLink } from 'react-router-dom';
 
 
 
@@ -82,9 +83,16 @@ function Appbar(props) {
             sx={{ display: "flex", justifyContent: "space-evenly" }}
             
           >
-            <Typography variant="h6" component={Link} sx={{ color: "#000" }} to='/'>
-              Flupkart
-            </Typography>
+            <Link
+  color="light"
+  level="h3"
+  underline="none"
+  
+  component={RouterLink}
+  to="/"
+>
+              Flupkart</Link>
+         
 
             {matches1 ? <Search /> : <></>}
 

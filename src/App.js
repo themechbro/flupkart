@@ -11,9 +11,10 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Checkout from "./components/checkout";
-import Error from "./components/error"
+import Error from "./components/other/error"
 import CartCard from "./components/cartCard";
 import Footer from "./components/other/footer";
+import Sucess from "./components/other/successCheckout";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -64,6 +65,7 @@ function App(props) {
           <Route path='/' element={<Product/>}/>
           <Route path="/cart" element={<CartCard />} />
           <Route path='/checkout' element={<Checkout/>}/>
+          <Route path="/order_success" element={<Sucess/>}/>
           <Route path='*' element={<Error/>}/>
         </Routes>
         <ScrollTop {...props}>

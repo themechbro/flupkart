@@ -1,10 +1,13 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+
+
 
 
 export default function Checkout(){
 const cartCheck=useSelector((state)=>state.list.cartItems);
+const navigate = useNavigate();
 
 
 const totalPrice = cartCheck.reduce((acc, current) => acc + current.price, 0);
@@ -205,7 +208,7 @@ const totalPrice = cartCheck.reduce((acc, current) => acc + current.price, 0);
               
                         <hr class="my-4"/>
               
-                        <button class="w-100 btn btn-primary btn-lg" type="submit">Continue to checkout</button>
+                        <button class="w-100 btn btn-primary btn-lg" type="submit" onClick={() => navigate('/order_success')} >Continue to checkout</button>
                       </form>
                 </div>
 

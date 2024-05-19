@@ -4,7 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../actions/action";
 import "./product.css";
 import Categories from "./category";
-import Ad from './ad'
+import Ad from './other/ad'
 
 
 function Product() {

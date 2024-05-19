@@ -8,11 +8,11 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 
 const imgs=[
-    "https://rukminim2.flixcart.com/fk-p-flap/480/80/image/1e31c9d65e3b4592.jpg?q=20",
-    "https://rukminim2.flixcart.com/fk-p-flap/480/80/image/cc633426b89ad841.png?q=20",
-    "https://rukminim2.flixcart.com/fk-p-flap/480/80/image/5483df11b3fc9f0b.jpg?q=20",
-    "https://rukminim2.flixcart.com/fk-p-flap/480/80/image/351fe32e7f128540.jpg?q=20",
-    "https://rukminim2.flixcart.com/fk-p-flap/1000/170/image/f21c8c88a0bb63e0.png?q=20",
+    "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/1e31c9d65e3b4592.jpg?q=20",
+    "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/cc633426b89ad841.png?q=20",
+    "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/5483df11b3fc9f0b.jpg?q=20",
+    "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/351fe32e7f128540.jpg?q=20",
+    "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/f21c8c88a0bb63e0.png?q=20",
 ]
 
 const NextArrow = ({ onClick }) => (

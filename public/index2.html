@@ -205,3 +205,34 @@
     </div>
 </body>
 </html>
+
+
+
+
+{cart.map((item) => {
+  return (
+    <Card
+      orientation="horizontal"
+      variant="outlined"
+      sx={{ width: 260, marginBottom: 3, marginRight: 3 }}
+      key={item.id} // Ensure unique key
+    >
+      <CardOverflow>
+        <AspectRatio ratio="1" sx={{ width: 90 }}>
+          <img
+            src={item.image}
+            srcSet={item.image}
+            loading="lazy"
+            alt=""
+          />
+        </AspectRatio>
+      </CardOverflow>
+      <CardContent>
+        <Typography fontWeight="md" textColor="success.plainColor">
+          {item.title}
+        </Typography>
+        <Typography level="body-sm">$ {item.price}</Typography>
+      </CardContent>
+    </Card>
+  );
+})}

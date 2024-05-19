@@ -16,7 +16,7 @@ export default function Cards({ image, title, description, price }) {
 
   function handleClick() {
     dispatch({ type: "ADD_CART" }, [dispatch]);
-    dispatch({ type: "CART_ITEMS", payload: { image, title, price, description } }, [
+    dispatch({ type: "CART_ITEMS", payload: { image, title, price, description} }, [
       dispatch,
     ]);
     setLoading(true);
