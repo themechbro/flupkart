@@ -13,6 +13,10 @@ const imgs=[
     "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/5483df11b3fc9f0b.jpg?q=20",
     "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/351fe32e7f128540.jpg?q=20",
     "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/f21c8c88a0bb63e0.png?q=20",
+    "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/17a2c4ed00866b1a.jpg?q=20",
+    "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/c550756e4d4ce11f.jpg?q=20",
+    "https://rukminim2.flixcart.com/fk-p-flap/1920/1080/image/345037032e3daaaf.jpg?q=20"
+
 ]
 
 const NextArrow = ({ onClick }) => (
