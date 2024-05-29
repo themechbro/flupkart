@@ -12,13 +12,15 @@ function Product() {
   const products = useSelector((state) => state.list.products);
   const searchedItem = useSelector((state) => state.list.searchedItem);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [displayedProducts, setDisplayedProducts] = useState([]);
-  const [hasMore, setHasMore] = useState(true);
-  const itemsPerPage = 20;
+
 //for dispatch
   useEffect(() => {
     dispatch(fetchProducts(), [dispatch]);
   });
+
+  const handleClick = (product) => {
+    dispatch({ type: "VIEW_PRODUCT", payload: product });
+  };
 
 // For infinte scroll
  
@@ -54,6 +56,7 @@ function Product() {
             title={product.title}
             description={product.description}
             price={product.price}
+            onClick={() => handleClick(product)}
           />
          
         ))}

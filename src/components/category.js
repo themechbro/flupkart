@@ -7,26 +7,18 @@ import Select from "@mui/material/Select";
 
 const categories = [
   "ALL",
-  "smartphones",
+  "beauty",
   "laptops",
   "fragrances",
   "skincare",
   "groceries",
   "home-decoration",
   "furniture",
-  "tops ",
-  "womens-dresses",
-  "womens-shoes",
+  "kitchen-accessories ",
   "mens-shirts",
   "mens-shoes",
   "mens-watches",
-  "womens-watches",
-  "womens-bags",
-  "womens-jewellery",
-  "sunglasses",
-  "automotive",
-  "motorcycle",
-  "lighting",
+  "mobile-accesories"
 ];
 
 export default function Categories({ selectedCategory, setSelectedCategory }) {

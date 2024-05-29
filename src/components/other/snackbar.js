@@ -28,7 +28,6 @@ const outAnimation = keyframes`
 export default function SnackbarNotif({open, setOpen}) {
 
   const cartI=useSelector((state)=> state.list.cartItems);  
-  console.log(cartI)
   const animationDuration = 600;
 
   const handleClose = () => {

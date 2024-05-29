@@ -7,8 +7,10 @@ import { useDispatch } from "react-redux";
 import Button from "@mui/joy/Button";
 import Typography from "@mui/joy/Typography";
 import SnackbarNotif from "./other/snackbar";
+import { Link } from "react-router-dom";
 
-export default function Cards({ image, title, description, price }) {
+
+export default function Cards({ image, title, description, price, onClick }) {
   const [hover, setHover] = useState(false);
   const [loading, setLoading] = useState(false);
   const [open, setOpen]= useState(false);
@@ -40,6 +42,10 @@ export default function Cards({ image, title, description, price }) {
       }}
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
+      onClick={onClick}
+      component={Link}
+      to={`/viewitem/${title}`}
+      underline="none"
     >
       <CardMedia component="img" width="440" height="240" image={image} sx={{padding:1, boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",}} />
       <CardContent>

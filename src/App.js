@@ -15,6 +15,7 @@ import Error from "./components/other/error"
 import CartCard from "./components/cartCard";
 import Footer from "./components/other/footer";
 import Sucess from "./components/other/successCheckout";
+import ViewItem from "./components/viewProduct";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -63,6 +64,7 @@ function App(props) {
         <div  >
         <Routes>
           <Route path='/' element={<Product/>}/>
+          <Route path="/viewitem/:title" element={<ViewItem />} />
           <Route path="/cart" element={<CartCard />} />
           <Route path='/checkout' element={<Checkout/>}/>
           <Route path="/order_success" element={<Sucess/>}/>

@@ -4,6 +4,8 @@ const initialState = {
     cart: 0,
     searchedItem: "",
     cartItems: [],
+    viewItem: {}
+
   };
   
   export default function Reducers(state = initialState, action) {
@@ -23,6 +25,9 @@ const initialState = {
       case "CART_ITEMS":
         return { ...state, cartItems: [...state.cartItems, action.payload] };
   
+        case "VIEW_PRODUCT":
+          return { ...state, viewItem: action.payload };
+          
       default:
         return state;
     }
