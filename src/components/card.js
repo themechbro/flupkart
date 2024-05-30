@@ -9,18 +9,20 @@ import Typography from "@mui/joy/Typography";
 import SnackbarNotif from "./other/snackbar";
 import { Link } from "react-router-dom";
 
-
 export default function Cards({ image, title, description, price, onClick }) {
   const [hover, setHover] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [open, setOpen]= useState(false);
+  const [open, setOpen] = useState(false);
   const dispatch = useDispatch();
 
   function handleClick() {
+    event.preventDefault();
+
     dispatch({ type: "ADD_CART" }, [dispatch]);
-    dispatch({ type: "CART_ITEMS", payload: { image, title, price, description} }, [
-      dispatch,
-    ]);
+    dispatch(
+      { type: "CART_ITEMS", payload: { image, title, price, description } },
+      [dispatch],
+    );
     setLoading(true);
     setTimeout(() => setLoading(false), 1000);
     setOpen(true);
@@ -35,19 +37,25 @@ export default function Cards({ image, title, description, price, onClick }) {
           ? "0px 11px 15px -7px rgba(0,0,0,0.2), 0px 24px 38px 3px rgba(0,0,0,0.14), 0px 9px 46px 8px rgba(0,0,0,0.12)"
           : "0px 1px 3px 0px rgba(0,0,0,0.2), 0px 1px 1px 0px rgba(0,0,0,0.14), 0px 2px 1px -1px rgba(0,0,0,0.12)",
         transition: "0.3s ease-in",
-        display:"flex",
-        flexDirection:'row',
-        justifyContent:'space-between',
-        flexWrap:'wrap'
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-between",
+        flexWrap: "wrap",
       }}
       onMouseOver={() => setHover(true)}
       onMouseOut={() => setHover(false)}
       onClick={onClick}
       component={Link}
       to={`/viewitem/${title}`}
-      underline="none"
+      style={{ textDecoration: "none" }}
     >
-      <CardMedia component="img" width="440" height="240" image={image} sx={{padding:1, boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)",}} />
+      <CardMedia
+        component="img"
+        width="440"
+        height="240"
+        image={image}
+        sx={{ padding: 1, boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}
+      />
       <CardContent>
         <Typography gutterBottom level="title-lg">
           {title}
@@ -62,15 +70,18 @@ export default function Cards({ image, title, description, price, onClick }) {
             <Button
               color="primary"
               variant="outlined"
-              onClick={handleClick}
+              onClick={(event) => {
+                event.stopPropagation();
+                handleClick(event);
+              }}
               startDecorator={<ShoppingCartCheckoutIcon />}
-              sx={{boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)"}}
+              sx={{ boxShadow: "0 4px 8px rgba(0, 0, 0, 0.1)" }}
             >
               {" "}
               Add to Cart
             </Button>
           )}
-<SnackbarNotif open={open} setOpen={setOpen}/>
+          <SnackbarNotif open={open} setOpen={setOpen} />
           <Typography level="body-md">${price}</Typography>
         </div>
       </CardContent>

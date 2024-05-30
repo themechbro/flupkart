@@ -109,6 +109,13 @@ function ViewItem() {
             </Typography>
             <Divider color="black" />
           </div>
+          <div className="p-md-5 p-1 waranty">
+            <Typography level="h4">Waranty</Typography>
+            <Typography level="body-lg" padding={2}>
+              {item.warrantyInformation}
+            </Typography>
+          </div>
+
           <div className="p-md-5 p-1">
             <Card variant="outlined">
               <CardContent>
