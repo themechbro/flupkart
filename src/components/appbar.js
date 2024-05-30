@@ -24,12 +24,7 @@ import ModalClose from "@mui/joy/ModalClose";
 import CartCard from "./cartCard";
 import Login from "./login";
 import { Link } from "@mui/joy";
-import { Link as RouterLink } from 'react-router-dom';
-
-
-
-
-
+import { Link as RouterLink } from "react-router-dom";
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -62,6 +57,7 @@ function Appbar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   const cart = useSelector((state) => state.list.cart);
+  const isLogin = useSelector((state) => state.list.isLoggedIn);
   const [openlogin, setOpenlogin] = React.useState(false);
   const [open1, setOpen1] = React.useState(false);
   const handleClick = (event) => {
@@ -76,23 +72,20 @@ function Appbar(props) {
     <React.Fragment>
       <CssBaseline />
       <HideOnScroll {...props}>
-      
-        <AppBar sx={{padding: 1 }} color="primary">
+        <AppBar sx={{ padding: 1 }} color="primary">
           <Toolbar
             className="container"
             sx={{ display: "flex", justifyContent: "space-evenly" }}
-            
           >
             <Link
-  color="light"
-  level="h3"
-  underline="none"
-  
-  component={RouterLink}
-  to="/"
->
-              Flupkart</Link>
-         
+              color="light"
+              level="h3"
+              underline="none"
+              component={RouterLink}
+              to="/"
+            >
+              Flupkart
+            </Link>
 
             {matches1 ? <Search /> : <></>}
 
@@ -106,10 +99,15 @@ function Appbar(props) {
                 >
                   Login
                 </Button>
-                 <Login open={openlogin} onClose={()=> setOpenlogin(false)} onSubmit={(event)=>{
-                  event.preventDefault();
-                  setOpenlogin(false);
-                 }}/>
+                <Login
+                  open={openlogin}
+                  onClose={() => setOpenlogin(false)}
+                  onSubmit={(event) => {
+                    event.preventDefault();
+                    setOpenlogin(false);
+                  }}
+                />
+
                 {cart > 0 ? (
                   <Badge badgeContent={cart} color="secondary">
                     {" "}
@@ -215,7 +213,6 @@ function Appbar(props) {
             )}
           </Toolbar>
         </AppBar>
-    
       </HideOnScroll>
 
       <Toolbar />
