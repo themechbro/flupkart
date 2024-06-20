@@ -18,6 +18,7 @@ import Rating from "@mui/material/Rating";
 import Input from "@mui/joy/Input";
 import Modal from "@mui/joy/Modal";
 import ModalClose from "@mui/joy/ModalClose";
+import Slider from "react-slick";
 
 function ViewItem() {
   const dispatch = useDispatch();
