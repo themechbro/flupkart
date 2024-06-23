@@ -24,7 +24,9 @@ import ModalClose from "@mui/joy/ModalClose";
 import CartCard from "./cartCard";
 import Login from "./login";
 import { Link } from "@mui/joy";
-import { Link as RouterLink } from "react-router-dom";
+import { Navigate, Link as RouterLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+
 
 function HideOnScroll(props) {
   const { children, window } = props;
@@ -52,6 +54,7 @@ HideOnScroll.propTypes = {
 };
 
 function Appbar(props) {
+  const navigate = useNavigate();
   const matches1 = useMediaQuery("(min-width:1100px)");
   const matches2 = useMediaQuery("(min-width:800px)");
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -140,9 +143,10 @@ function Appbar(props) {
                   </Button>
                 )}
                 <Button
-                  sx={{ color: "#000" }}
+                  sx={{ color: "#000"}}
                   variant="secondary"
                   startIcon={<StorefrontIcon sx={{ color: "#000" }} />}
+                  onClick={() => navigate('/becomeaseller')}
                 >
                   Become a Seller
                 </Button>
@@ -204,6 +208,7 @@ function Appbar(props) {
                       variant="secondary"
                       startIcon={<StorefrontIcon sx={{ color: "#000" }} />}
                       className="nav-item"
+                      onClick={() => navigate('/becomeaseller')}
                     >
                       Become a Seller
                     </Button>

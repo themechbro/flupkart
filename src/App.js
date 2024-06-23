@@ -16,6 +16,7 @@ import CartCard from "./components/cartCard";
 import Footer from "./components/other/footer";
 import Sucess from "./components/other/successCheckout";
 import ViewItem from "./components/viewitem/viewProduct";
+import Seller from "./components/becomeaseller/beseller";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -69,6 +70,7 @@ function App(props) {
               <Route path="/checkout" element={<Checkout />} />
               <Route path="/order_success" element={<Sucess />} />
               <Route path="*" element={<Error />} />
+              <Route path="/becomeaseller" element={<Seller/>}/>
             </Routes>
             <ScrollTop {...props}>
               <Fab size="small" aria-label="scroll back to top">
