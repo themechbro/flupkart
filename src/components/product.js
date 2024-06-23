@@ -4,8 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchProducts } from "../actions/action";
 import "./product.css";
 import Categories from "./category";
-import Ad from './other/ad'
-
+import Ad from "./other/ad";
 
 function Product() {
   const dispatch = useDispatch();
@@ -13,7 +12,7 @@ function Product() {
   const searchedItem = useSelector((state) => state.list.searchedItem);
   const [selectedCategory, setSelectedCategory] = useState("");
 
-//for dispatch
+  //for dispatch
   useEffect(() => {
     dispatch(fetchProducts(), [dispatch]);
   });
@@ -22,12 +21,9 @@ function Product() {
     dispatch({ type: "VIEW_PRODUCT", payload: product });
   };
 
-// For infinte scroll
- 
-
   return (
     <div className=" deck container mt-5">
-    <Ad/>
+      <Ad />
       <div className="container filter-grp mt-5 mb-5">
         <Categories
           selectedCategory={selectedCategory}
@@ -49,7 +45,6 @@ function Product() {
           return isCategoryMatch && isSearchedItem;
         })
         .map((product, index) => (
-          
           <Cards
             key={index}
             image={product.thumbnail}
@@ -58,9 +53,7 @@ function Product() {
             price={product.price}
             onClick={() => handleClick(product)}
           />
-         
         ))}
-       
     </div>
   );
 }

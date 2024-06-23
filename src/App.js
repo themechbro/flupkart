@@ -11,11 +11,11 @@ import useScrollTrigger from "@mui/material/useScrollTrigger";
 import Box from "@mui/material/Box";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Checkout from "./components/checkout";
-import Error from "./components/other/error"
+import Error from "./components/other/error";
 import CartCard from "./components/cartCard";
 import Footer from "./components/other/footer";
 import Sucess from "./components/other/successCheckout";
-import ViewItem from "./components/viewProduct";
+import ViewItem from "./components/viewitem/viewProduct";
 
 function ScrollTop(props) {
   const { children, window } = props;
@@ -27,7 +27,7 @@ function ScrollTop(props) {
 
   const handleClick = (event) => {
     const anchor = (event.target.ownerDocument || document).querySelector(
-      "#back-to-top-anchor"
+      "#back-to-top-anchor",
     );
 
     if (anchor) {
@@ -58,26 +58,26 @@ ScrollTop.propTypes = {
 function App(props) {
   return (
     <Provider store={store}>
-    <Router>
-      <div className="App"  >
-        <Appbar />
-        <div  >
-        <Routes>
-          <Route path='/' element={<Product/>}/>
-          <Route path="/viewitem/:title" element={<ViewItem />} />
-          <Route path="/cart" element={<CartCard />} />
-          <Route path='/checkout' element={<Checkout/>}/>
-          <Route path="/order_success" element={<Sucess/>}/>
-          <Route path='*' element={<Error/>}/>
-        </Routes>
-        <ScrollTop {...props}>
-          <Fab size="small" aria-label="scroll back to top">
-            <KeyboardArrowUpIcon />
-          </Fab>
-        </ScrollTop>
+      <Router>
+        <div className="App">
+          <Appbar />
+          <div>
+            <Routes>
+              <Route path="/" element={<Product />} />
+              <Route path="/viewitem/:title" element={<ViewItem />} />
+              <Route path="/cart" element={<CartCard />} />
+              <Route path="/checkout" element={<Checkout />} />
+              <Route path="/order_success" element={<Sucess />} />
+              <Route path="*" element={<Error />} />
+            </Routes>
+            <ScrollTop {...props}>
+              <Fab size="small" aria-label="scroll back to top">
+                <KeyboardArrowUpIcon />
+              </Fab>
+            </ScrollTop>
+          </div>
+          <Footer />
         </div>
-        <Footer/>
-      </div>
       </Router>
     </Provider>
   );
